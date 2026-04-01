@@ -1,0 +1,61 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card border-0 shadow-lg p-4" style="width: 100%; max-width: 450px; border-radius: 25px;">
+    
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">¡Qué onda de nuevo! 👋</h2>
+      <p class="text-muted">Entra para gestionar tus pendientes</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Nombre de usuario</label>
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0">
+            <i class="fa-solid fa-user text-muted"></i>
+          </span>
+          <input 
+            type="text" 
+            formControlName="username" 
+            class="form-control bg-light border-0 py-2" 
+            placeholder="juan_perez"
+            style="border-radius: 0 10px 10px 0;">
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label small fw-bold">Contraseña</label>
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0">
+            <i class="fa-solid fa-lock text-muted"></i>
+          </span>
+          <input 
+            [type]="hidePassword ? 'password' : 'text'" 
+            formControlName="password" 
+            class="form-control bg-light border-0 py-2" 
+            placeholder="••••••••">
+          <button 
+            type="button" 
+            class="input-group-text bg-light border-0" 
+            (click)="togglePassword()"
+            style="border-radius: 0 10px 10px 0;">
+            <i class="fa-solid text-muted" [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+        </div>
+      </div>
+
+      <button 
+        type="submit" 
+        [disabled]="loginForm.invalid" 
+        class="btn btn-primary w-100 fw-bold py-2 mb-3 shadow-sm" style="border-radius: 12px;">
+        INICIAR SESIÓN
+      </button>
+
+      <div class="text-center">
+        <span class="text-muted small">¿No tienes cuenta? </span>
+        <a routerLink="/register" class="text-primary small fw-bold text-decoration-none">Regístrate ahora</a>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.input-group-text button,
+.input-group-text {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.input-group-text:hover i {
+  color: #0d6efd;
+}
