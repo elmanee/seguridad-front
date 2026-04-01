@@ -1,51 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+<nav class="navbar navbar-expand-lg bg-white sticky-top py-3 shadow-sm border-bottom border-light">
   <div class="container">
-    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/dashboard">
-      <div class="bg-primary rounded-circle p-2 me-2 d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
-        <i class="fa-solid fa-check text-white fs-6"></i>
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/dashboard" style="letter-spacing: -0.5px;">
+      <div class="bg-primary rounded-3 p-2 me-2 d-flex align-items-center justify-content-center shadow-sm" style="width: 40px; height: 40px;">
+        <i class="fa-solid fa-check-double text-white fs-5"></i>
       </div>
-      <span class="tracking-tight">TASK PRO</span>
+      <span style="font-size: 1.3rem; color: var(--text-main);">TASK<span class="text-primary">PRO</span></span>
     </a>
-    
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-center">
-        
+
         @if (!authService.getAccessToken()) {
           <li class="nav-item">
-            <a class="nav-link px-3" routerLink="/login">Iniciar Sesión</a>
+            <a class="nav-link px-3 fw-600 text-muted" routerLink="/login" routerLinkActive="text-primary">Entrar</a>
           </li>
           <li class="nav-item ms-lg-2">
-            <a class="btn btn-primary px-4 shadow-sm" routerLink="/register" style="border-radius: 10px;">Registrarse</a>
+            <a class="btn btn-primary px-4 fw-600 shadow-sm" routerLink="/register">Empezar</a>
           </li>
         } @else {
-          <li class="nav-item me-lg-3">
-            <a class="nav-link" routerLink="/dashboard">
-              <i class="fa-solid fa-house-chimney me-1"></i> Dashboard
+          <li class="nav-item me-lg-4">
+            <a class="nav-link fw-600 d-flex align-items-center gap-2" routerLink="/dashboard" routerLinkActive="text-primary">
+              <i class="fa-solid fa-chart-simple small"></i> Panel
             </a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-center bg-secondary bg-opacity-10 rounded-pill px-3" 
-               href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-circle-user fs-5 me-2"></i>
+            <a class="nav-link dropdown-toggle ..."
+              role="button"
+              (click)="toggleDropdown()"> <i class="fa-solid fa-user ..."></i>
               <span>Mi Cuenta</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius: 15px;">
-              <li>
-                <a class="dropdown-item py-2" routerLink="/profile">
-                  <i class="fa-solid fa-gear me-2 text-muted"></i> Configurar Perfil
-                </a>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li>
-                <button (click)="onLogout()" class="dropdown-item py-2 text-dark fw-bold">
-                  <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i> Cerrar Sesión
-                </button>
-              </li>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg"
+                [class.show]="isDropdownOpen">
+              <li><a class="dropdown-item" routerLink="/profile">Mi Perfil</a></li>
+              <li><button (click)="onLogout()" class="dropdown-item text-danger">Cerrar Sesión</button></li>
             </ul>
           </li>
         }

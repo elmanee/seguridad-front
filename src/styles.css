@@ -3,42 +3,178 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 :root {
-  --primary-color: #4f46e5;
+  --primary-color: #1890ff;
+  --primary-dark: #096dd9;
   --bg-color: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+
+  --premium-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.01);
+  --soft-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --border-radius-xl: 25px;
 }
 
 body {
   font-family: 'Outfit', sans-serif;
   background-color: var(--bg-color);
+  background-image: radial-gradient(rgba(24, 144, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
   margin: 0;
-  color: #1e293b;
+  color: var(--text-main);
+  min-height: 100vh;
 }
 
-.btn, .form-control, .card-title {
+.btn, .form-control, .card-title, .nav-link {
   font-family: 'Outfit', sans-serif;
 }
 
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: var(--premium-shadow) !important;
+  border-radius: var(--border-radius-xl) !important;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+.shadow-lg {
+  box-shadow: var(--soft-shadow-lg) !important;
+}
+
+.form-control:not(.input-group .form-control) {
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--border-radius-xl) !important;
+  padding: 12px 20px;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.1) !important;
+  outline: none;
+}
+
+.input-group {
+  border-radius: var(--border-radius-xl) !important;
+  overflow: hidden;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: var(--premium-shadow);
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.input-group .form-control,
+.input-group .input-group-text,
+.input-group .btn {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.input-group-text {
+  background-color: #f8fafc;
+  color: var(--text-muted);
+  padding: 0 1.25rem;
+  border-right: 1.5px solid #e2e8f0 !important;
+}
+
+.input-group:focus-within {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.1) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius-xl) !important;
+  padding: 12px 28px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(24, 144, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  box-shadow: 0 6px 20px rgba(24, 144, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
 #toast-container {
-  top: 20px !important;
-  right: 20px !important;
-  bottom: auto !important;
-  left: auto !important;
+  top: 24px !important;
+  right: 24px !important;
   position: fixed !important;
 }
 
 .ngx-toastr {
   font-family: 'Outfit', sans-serif !important;
   min-width: 320px !important;
-  border-radius: 12px !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
-  padding: 15px 15px 15px 55px !important;
+  border-radius: var(--border-radius-xl) !important;
+  box-shadow: var(--soft-shadow-lg) !important;
   opacity: 1 !important;
 }
 
-.toast-success {
-  background-color: #0d6efd !important;
+.sticky-top {
+  z-index: 1020;
 }
 
-.toast-error {
-  background-color: #dc3545 !important;
+.fw-700 { font-weight: 700; }
+.fw-600 { font-weight: 600; }
+.small-caps {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.swal2-actions button,
+.swal2-confirm,
+.swal2-cancel {
+  border-radius: var(--border-radius-xl) !important;
+  padding: 12px 30px !important;
+  font-weight: 600 !important;
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.swal2-cancel {
+  background-color: #f8f9fa !important;
+  color: #64748b !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.swal2-confirm {
+  background-color: var(--primary-color) !important;
+  box-shadow: 0 4px 14px rgba(24, 144, 255, 0.25) !important;
+}
+
+.btn-light-custom {
+  border-radius: var(--border-radius-xl) !important;
+  border: 1px solid #e2e8f0 !important;
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  padding: 12px 28px !important;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .swal2-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px;
+  }
+
+  .swal2-actions button {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15px !important;
+  }
+
+  .swal2-popup {
+    padding: 20px 10px !important;
+    width: 90% !important;
+  }
 }

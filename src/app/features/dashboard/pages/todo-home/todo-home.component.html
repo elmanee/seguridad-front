@@ -1,42 +1,71 @@
 <div class="container py-5">
-  <div class="d-flex justify-content-between align-items-center mb-5">
-    <h2 class="fw-bold m-0">Mis Pendientes 📝</h2>
-    <button class="btn btn-primary shadow-sm px-4" 
-            data-bs-toggle="modal" 
-            data-bs-target="#taskModal" 
-            (click)="openCreate()">
-      <i class="fa-solid fa-plus me-2"></i>Nueva Tarea
-    </button>
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-3">
+  <div class="d-flex align-items-center gap-3">
+    <i class="fa-solid fa-rectangle-list text-primary" style="font-size: 2.5rem; filter: drop-shadow(0 2px 4px rgba(24, 144, 255, 0.2));"></i>
+
+    <div>
+      <h2 class="fw-700 mb-0" style="letter-spacing: -0.5px; color: var(--text-main);">Mis Pendientes</h2>
+      <p class="text-muted mb-0 small">Organiza tus tareas y objetivos del día.</p>
+    </div>
   </div>
 
-  <div class="row">
+  <button class="btn btn-primary px-4 py-3 d-flex align-items-center gap-2 shadow"
+          data-bs-toggle="modal"
+          data-bs-target="#taskModal"
+          (click)="openCreate()">
+    <i class="fa-solid fa-plus"></i>
+    <span style="letter-spacing: 0.5px; font-weight: 700;">NUEVA TAREA</span>
+  </button>
+</div>
+  <div class="row g-4">
     @for (task of tasks; track task.id) {
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 border-0 shadow-sm" style="border-radius: 15px;">
-          <div class="card-body p-4">
-            <h5 class="fw-bold">{{ task.name }}</h5>
-            <p class="text-muted small">{{ task.description }}</p>
-            
-            <div class="d-flex justify-content-between align-items-center mt-4">
-              <span class="badge" [class.bg-danger]="task.priority" [class.bg-info]="!task.priority">
-                {{ task.priority ? 'Urgente' : 'Normal' }}
-              </span>
-              
-              <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm border-0" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#taskModal" 
-                        (click)="openEdit(task)">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-outline-danger btn-sm border-0" 
-                        (click)="deleteTask(task.id)">
-                  <i class="fa-solid fa-trash-can"></i>
-                </button>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 p-3 shadow-sm">
+          <div class="card-body p-2 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                  <i class="fa-solid fa-clipboard-list text-primary small"></i>
+                </div>
+                <h5 class="fw-bold mb-0" style="color: var(--text-main); font-size: 1.05rem; letter-spacing: -0.2px;">{{ task.name }}</h5>
               </div>
+              <span class="badge rounded-pill px-3 py-2 border"
+                    [style.background-color]="task.priority ? 'rgba(255, 77, 79, 0.05)' : 'rgba(24, 144, 255, 0.05)'"
+                    [style.border-color]="task.priority ? 'rgba(255, 77, 79, 0.2)' : 'rgba(24, 144, 255, 0.2)'"
+                    [style.color]="task.priority ? '#ff4d4f' : '#1890ff'"
+                    style="font-size: 0.7rem; font-weight: 700;">
+                {{ task.priority ? 'URGENTE' : 'NORMAL' }}
+              </span>
+            </div>
+
+            <p class="text-muted mb-4 small flex-grow-1" style="line-height: 1.6; min-height: 40px;">
+              {{ task.description || 'Sin descripción adicional para esta tarea.' }}
+            </p>
+
+            <div class="d-flex justify-content-end align-items-center pt-3 border-top gap-2">
+              <button class="btn btn-light border-0 shadow-none bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center"
+                      style="width: 38px; height: 38px; transition: 0.2s;"
+                      data-bs-toggle="modal"
+                      data-bs-target="#taskModal"
+                      (click)="openEdit(task)">
+                <i class="fa-solid fa-pen-to-square small"></i>
+              </button>
+              <button class="btn btn-light border-0 shadow-none bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center"
+                      style="width: 38px; height: 38px; transition: 0.2s;"
+                      (click)="deleteTask(task.id)">
+                <i class="fa-solid fa-trash-can small"></i>
+              </button>
             </div>
           </div>
         </div>
+      </div>
+    } @empty {
+      <div class="col-12 text-center py-5">
+        <div class="mb-3 opacity-25">
+          <i class="fa-solid fa-layer-group text-muted" style="font-size: 5rem;"></i>
+        </div>
+        <h5 class="fw-bold text-muted">AÚN NO HAY TAREAS</h5>
+        <p class="text-muted small">Crea tu primera tarea para empezar el día.</p>
       </div>
     }
   </div>
@@ -44,30 +73,40 @@
 
 <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-      <div class="modal-header border-0 pt-4 px-4">
-        <h5 class="modal-title fw-bold">{{ isEditing ? 'Editar Tarea' : 'Nueva Tarea' }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <div class="modal-content border-0 p-2 shadow-lg" style="border-radius: var(--border-radius-xl);">
+      <div class="modal-header border-0 pt-4 px-4 pb-0">
+        <h4 class="modal-title fw-bold" style="letter-spacing: -1px;">
+          {{ isEditing ? 'Editar Tarea' : 'Nueva Tarea' }}
+        </h4>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body p-4">
         <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
-          <div class="mb-3">
-            <label class="form-label fw-bold small">Nombre</label>
-            <input type="text" formControlName="name" class="form-control bg-light border-0" placeholder="¿Qué hay que hacer?">
-          </div>
-          <div class="mb-3">
-            <label class="form-label fw-bold small">Descripción</label>
-            <textarea formControlName="description" class="form-control bg-light border-0" rows="3"></textarea>
+          <div class="mb-4">
+            <label class="form-label small fw-700 text-uppercase mb-2 ms-1 text-muted" style="letter-spacing: 0.5px;">¿Qué hay que hacer?</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Escribe el título de la tarea...">
           </div>
           <div class="mb-4">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" formControlName="priority" id="modalPrio">
-              <label class="form-check-label small" for="modalPrio">Prioridad Alta</label>
+            <label class="form-label small fw-700 text-uppercase mb-2 ms-2 text-muted" style="letter-spacing: 0.5px;">Descripción</label>
+            <textarea formControlName="description" class="form-control" rows="3" placeholder="Añade más detalles..."></textarea>
+          </div>
+          <div class="mb-5">
+            <div class="d-flex align-items-center justify-content-between p-3 rounded-4" style="background: rgba(24, 144, 255, 0.03); border: 1px dashed rgba(24, 144, 255, 0.2);">
+              <div>
+                <label class="fw-bold small d-block mb-0" for="modalPrio">Prioridad Alta</label>
+                <span class="text-muted" style="font-size: 0.75rem;">Resaltar tarea como urgente</span>
+              </div>
+              <div class="form-check form-switch p-0 m-0">
+                <input class="form-check-input ms-0" type="checkbox" formControlName="priority" id="modalPrio" style="width: 2.8rem; height: 1.4rem; cursor: pointer;">
+              </div>
             </div>
           </div>
-          <button type="submit" [disabled]="taskForm.invalid" data-bs-dismiss="modal" class="btn btn-primary w-100 fw-bold py-2 shadow-sm">
-            {{ isEditing ? 'Actualizar' : 'Guardar' }}
-          </button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-light-custom fw-bold flex-grow-1 py-3" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" [disabled]="taskForm.invalid" data-bs-dismiss="modal" class="btn btn-primary flex-grow-1 py-3">
+              {{ isEditing ? 'Actualizar' : 'Guardar' }}
+            </button>
+          </div>
         </form>
       </div>
     </div>

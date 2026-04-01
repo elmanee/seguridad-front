@@ -13,8 +13,16 @@ import { AuthService } from '../../../core/services/auth.service';
 export class NavbarComponent {
   public authService = inject(AuthService);
   private router = inject(Router);
+  public isDropdownOpen = false;
+
+  ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.isDropdownOpen = false;
+    });
+  }
 
   onLogout() {
+    this.isDropdownOpen = false;
     this.authService.logout().subscribe({
       next: () => {
         this.authService.clearTokens();
@@ -26,5 +34,9 @@ export class NavbarComponent {
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }

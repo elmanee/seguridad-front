@@ -1,0 +1,12 @@
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+  min-width: 180px;
+}
+
+.dropdown-menu.show {
+  display: block !important; 
+}
