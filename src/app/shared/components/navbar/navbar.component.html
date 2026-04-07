@@ -1,10 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-white sticky-top py-3 shadow-sm border-bottom border-light">
   <div class="container">
-    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/dashboard" style="letter-spacing: -0.5px;">
-      <div class="bg-primary rounded-3 p-2 me-2 d-flex align-items-center justify-content-center shadow-sm" style="width: 40px; height: 40px;">
-        <i class="fa-solid fa-check-double text-white fs-5"></i>
+    <a class="navbar-brand fw-bold d-flex align-items-center flex-nowrap" routerLink="/dashboard" style="letter-spacing: -0.5px;">
+
+      <div class="d-flex align-items-center justify-content-center me-3" style="width: 55px; height: 55px;">
+        <img src="/logo.png" alt="TaskPro Logo" class="img-fluid" style="object-fit: contain; max-height: 100%; width: 100%;">
       </div>
-      <span style="font-size: 1.3rem; color: var(--text-main);">TASK<span class="text-primary">PRO</span></span>
+
+      <span style="font-size: 1.5rem; color: var(--text-main); font-weight: 800; line-height: 1;">
+        TASK<span class="text-primary">PRO</span>
+      </span>
     </a>
 
     <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,16 +33,16 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle ..."
-              role="button"
-              (click)="toggleDropdown()"> <i class="fa-solid fa-user ..."></i>
-              <span>Mi Cuenta</span>
+            <a class="nav-link dropdown-toggle d-flex align-items-center bg-light rounded-pill px-3 py-2 border shadow-sm"
+               role="button" (click)="toggleDropdown()">
+              <i class="fa-solid fa-user fs-6 me-2 text-primary"></i>
+              <span class="fw-600 text-dark small">Mi Cuenta</span>
             </a>
 
-            <ul class="dropdown-menu dropdown-menu-end shadow-lg"
-                [class.show]="isDropdownOpen">
-              <li><a class="dropdown-item" routerLink="/profile">Mi Perfil</a></li>
-              <li><button (click)="onLogout()" class="dropdown-item text-danger">Cerrar Sesión</button></li>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3" [class.show]="isDropdownOpen">
+              <li><a class="dropdown-item rounded-3" routerLink="/profile">Mi Perfil</a></li>
+              <li><hr class="dropdown-divider opacity-50"></li>
+              <li><button (click)="onLogout()" class="dropdown-item rounded-3 text-danger fw-600">Cerrar Sesión</button></li>
             </ul>
           </li>
         }

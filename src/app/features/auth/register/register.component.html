@@ -1,6 +1,6 @@
-<div class="container d-flex justify-content-center align-items-center vh-100 px-4">
-  <div class="card border-0 shadow-lg p-4 p-md-5" style="width: 100%; max-width: 550px;">
-    
+<div class="container d-flex justify-content-center align-items-center min-vh-100 py-4">
+  <div class="card border-0 shadow-lg p-4 p-md-5" style="width: 100%; max-width: 620px; margin-top: 2rem;">
+
     <div class="text-center mb-5">
       <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 rounded-circle mb-4 shadow-sm" style="width: 70px; height: 70px;">
         <i class="fa-solid fa-user-plus text-primary fs-3"></i>
@@ -27,9 +27,9 @@
           <span class="input-group-text">
             <i class="fa-solid fa-at small"></i>
           </span>
-          <input 
-            type="text" 
-            formControlName="username" 
+          <input
+            type="text"
+            formControlName="username"
             class="form-control" 
             placeholder="usuario_id">
         </div>
@@ -41,23 +41,23 @@
           <span class="input-group-text">
             <i class="fa-solid fa-key small"></i>
           </span>
-          <input 
-            [type]="hidePassword ? 'password' : 'text'" 
-            formControlName="password" 
-            class="form-control" 
+          <input
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            class="form-control"
             placeholder="••••••••">
-          <button 
-            type="button" 
-            class="bg-white px-3 border-0 text-muted" 
+          <button
+            type="button"
+            class="bg-white px-3 border-0 text-muted"
             (click)="togglePassword()">
             <i class="fa-solid fa-fw" [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye'" style="font-size: 0.85rem;"></i>
           </button>
         </div>
       </div>
 
-      <button 
-        type="submit" 
-        [disabled]="registerForm.invalid" 
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
         class="btn btn-primary w-100 py-3 mb-4 shadow"
         style="letter-spacing: 0.5px; font-size: 1.05rem;">
         REGISTRARSE AHORA
@@ -65,11 +65,11 @@
 
       <div class="text-center">
         <p class="mb-0 text-muted small">
-          ¿Ya tienes cuenta? 
+          ¿Ya tienes cuenta?
           <a routerLink="/login" class="text-primary fw-bold text-decoration-none ms-1">Inicia sesión</a>
         </p>
       </div>
 
     </form>
   </div>
-</div>
+</div>

@@ -1,5 +1,5 @@
-<div class="container d-flex justify-content-center align-items-center vh-100 px-4">
-  <div class="card border-0 shadow-lg p-4 p-md-5" style="width: 100%; max-width: 480px;">
+<div class="container d-flex justify-content-center align-items-center min-vh-100 py-4">
+  <div class="card border-0 shadow-lg p-4 p-md-5" style="width: 100%; max-width: 500px; margin-top: 2rem;">
 
     <div class="text-center mb-5">
       <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 rounded-circle mb-4 shadow-sm" style="width: 80px; height: 80px;">
@@ -20,7 +20,7 @@
           <input
             type="text"
             formControlName="username"
-            class="form-control py-2"
+            class="form-control"
             placeholder="Tu nombre de usuario">
         </div>
       </div>
@@ -34,7 +34,7 @@
           <input
             [type]="hidePassword ? 'password' : 'text'"
             formControlName="password"
-            class="form-control py-2"
+            class="form-control"
             placeholder="••••••••">
           <button
             type="button"
@@ -56,10 +56,9 @@
       <div class="text-center">
         <p class="mb-0 text-muted small">
           ¿No tienes cuenta?
-          <a routerLink="/register" class="text-primary fw-bold text-decoration-none ms-1">Regístrate gratis</a>
+          <a routerLink="/register" class="text-primary fw-bold text-decoration-none ms-1">Regístrate aquí</a>
         </p>
       </div>
-
     </form>
   </div>
 </div>
