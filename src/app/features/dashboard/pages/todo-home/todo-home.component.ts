@@ -4,12 +4,13 @@ import { TaskService } from '../../../../core/services/task.service';
 import { Task } from '../../../../core/models/task.model';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertService } from '../../../../core/services/alert.service';
+import { OnlyAlphanumericDirective } from '../../../../shared/directives/only-alphanumeric.directive';
 
 
 @Component({
   selector: 'app-todo-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, OnlyAlphanumericDirective],
   templateUrl: './todo-home.component.html'
 })
 export class TodoHomeComponent implements OnInit {

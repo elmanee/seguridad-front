@@ -21,11 +21,11 @@
           <div class="row g-4">
             <div class="col-md-6">
               <label class="form-label small fw-700 text-uppercase mb-2 ms-1 text-muted" style="letter-spacing: 0.5px;">Nombre</label>
-              <input type="text" formControlName="name" class="form-control" placeholder="Escribe tu nombre">
+              <input type="text" formControlName="name" appOnlyLetters class="form-control" placeholder="Escribe tu nombre">
             </div>
             <div class="col-md-6">
               <label class="form-label small fw-700 text-uppercase mb-2 ms-1 text-muted" style="letter-spacing: 0.5px;">Apellido</label>
-              <input type="text" formControlName="lastname" class="form-control" placeholder="Escribe tu apellido">
+              <input type="text" formControlName="lastname" appOnlyLetters class="form-control" placeholder="Escribe tu apellido">
             </div>
           </div>
 
@@ -35,7 +35,7 @@
               <span class="input-group-text">
                 <i class="fa-solid fa-at small"></i>
               </span>
-              <input type="text" formControlName="username" class="form-control bg-light">
+              <input type="text" formControlName="username" appOnlyUsername class="form-control bg-light">
             </div>
           </div>
 
@@ -45,7 +45,7 @@
               <span class="input-group-text">
                 <i class="fa-solid fa-key small"></i>
               </span>
-              <input type="password" formControlName="password" class="form-control" placeholder="Dejar vacío para no cambiar">
+              <input type="password" formControlName="password" appSecurePassword class="form-control" placeholder="Dejar vacío para no cambiar">
             </div>
           </div>
 

@@ -20,6 +20,7 @@
           <input
             type="text"
             formControlName="username"
+            appOnlyUsername
             class="form-control"
             placeholder="Tu nombre de usuario">
         </div>
@@ -35,6 +36,7 @@
             [type]="hidePassword ? 'password' : 'text'"
             formControlName="password"
             class="form-control"
+            appSecurePassword
             placeholder="••••••••">
           <button
             type="button"

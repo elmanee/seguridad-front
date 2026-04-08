@@ -4,11 +4,13 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '../../../core/services/alert.service';
+import { OnlyUsernameDirective } from '../../../shared/directives/only-username.directive';
+import { SecurePasswordDirective } from '../../../shared/directives/secure-password.directive';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, OnlyUsernameDirective, SecurePasswordDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

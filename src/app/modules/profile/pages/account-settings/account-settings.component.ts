@@ -5,11 +5,14 @@ import { UserService } from '../../../../core/services/user.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { AlertService } from '../../../../core/services/alert.service';
+import { OnlyLettersDirective } from '../../../../shared/directives/only-letters.directive';
+import { OnlyUsernameDirective } from '../../../../shared/directives/only-username.directive';
+import { SecurePasswordDirective } from '../../../../shared/directives/secure-password.directive';
 
 @Component({
   selector: 'app-account-settings',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, OnlyLettersDirective, OnlyUsernameDirective, SecurePasswordDirective],
   templateUrl: './account-settings.component.html'
 })
 export class AccountSettingsComponent implements OnInit {
