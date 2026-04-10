@@ -10,11 +10,15 @@ export class OnlyUsernameDirective {
     const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete', 'Enter'];
     if (allowedKeys.includes(event.key)) return;
 
-    // Regex: Permite letras, números, punto y guion bajo. NO permite espacios.
     const regex = /^[a-zA-Z0-9._]$/;
     
     if (!regex.test(event.key)) {
-      event.preventDefault(); // Bloquea todo lo demás (espacios, comas, comillas, etc.)
+      event.preventDefault();
     }
+  }
+
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault();
   }
 }

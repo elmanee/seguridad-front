@@ -16,4 +16,9 @@ export class OnlyAlphanumericDirective {
       event.preventDefault();
     }
   }
+
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault();
+  }
 }

@@ -16,4 +16,9 @@ export class OnlyNumbersDirective {
       event.preventDefault();
     }
   }
+
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault();
+  }
 }

@@ -20,6 +20,20 @@ export class AuthService {
     );
   }
 
+  isAdmin(): boolean {
+    const token = this.getAccessToken();
+    if (!token) return false;
+
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const payload = JSON.parse(atob(payloadBase64));
+
+      return payload.username === 'admin'; 
+    } catch (e) {
+      return false;
+    }
+  }
+
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiPostUser}/user`, userData);
   }
@@ -27,7 +41,6 @@ export class AuthService {
   refreshToken() {
   const token = localStorage.getItem('refresh_token');
 
-  // El nombre de la propiedad aquí DEBE coincidir con el @Body() del Back
   return this.http.post(`${this.apiUrl}/refresh`, {
     refresh_token: token
   });

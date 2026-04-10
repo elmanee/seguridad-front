@@ -23,8 +23,20 @@ export class TodoHomeComponent implements OnInit {
   selectedTaskId: number | null = null;
 
   taskForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    description: ['', [Validators.required]],
+    name: ['', 
+      [
+        Validators.required, 
+        Validators.minLength(3),
+        Validators.maxLength(250)
+      ]
+    ],
+    description: ['', 
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(250)
+      ]
+    ],
     priority: [false]
   });
 
@@ -53,9 +65,20 @@ export class TodoHomeComponent implements OnInit {
   saveTask() {
     if (this.taskForm.invalid) return;
 
+    const formValue = {
+      ...this.taskForm.value,
+      name: this.taskForm.value.name?.trim(),
+      description: this.taskForm.value.description?.trim()
+    };
+
+    if ((formValue.name?.length || 0) < 3) {
+      this.alertSvc.error('El nombre debe tener al menos 3 caracteres reales');
+      return;
+    }
+
     const request = (this.isEditing && this.selectedTaskId)
-      ? this.taskService.updateTask(this.selectedTaskId, this.taskForm.value)
-      : this.taskService.createTask(this.taskForm.value);
+      ? this.taskService.updateTask(this.selectedTaskId, formValue)
+      : this.taskService.createTask(formValue);
 
     request.subscribe({
       next: () => {
