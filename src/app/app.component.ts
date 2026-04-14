@@ -9,6 +9,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+  title = 'FrontSeguridad';
 
   ngOnInit() {
     this.bloquearInspeccion();

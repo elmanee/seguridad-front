@@ -28,23 +28,15 @@
             </a>
           </li>
 
-          @if (authService.isAdmin()) {
-            <li class="nav-item me-lg-4">
-              <a class="nav-link fw-600 d-flex align-items-center gap-2 text-primary" 
-                routerLink="/admin/users">
-                <i class="fa-solid fa-user-plus small"></i> Usuarios
-              </a>
-            </li>
-          }
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle d-flex align-items-center bg-light rounded-pill px-3 py-2 border shadow-sm"
-               role="button" (click)="toggleDropdown()">
+               role="button" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
               <i class="fa-solid fa-user fs-6 me-2 text-primary"></i>
               <span class="fw-600 text-dark small">Mi Cuenta</span>
             </a>
 
-            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3" [class.show]="isDropdownOpen">
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3">
               <li><a class="dropdown-item rounded-3" routerLink="/profile">Mi Perfil</a></li>
               <li><hr class="dropdown-divider opacity-50"></li>
               <li><button (click)="onLogout()" class="dropdown-item rounded-3 text-danger fw-600">Cerrar Sesión</button></li>

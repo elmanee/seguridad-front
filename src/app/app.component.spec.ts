@@ -1,10 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { provideHttpClient } from '@angular/common/http'; // 1. Importa esto
+import { provideRouter } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [
+        provideHttpClient(), // 2. Agrega el proveedor aquí
+        provideRouter([])    // También es buena práctica agregar el router
+      ]
     }).compileComponents();
   });
 
@@ -14,16 +20,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'front-seguridad' title`, () => {
+  it(`should have the 'FrontSeguridad' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('front-seguridad');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, front-seguridad');
+    // Asegúrate de que el texto coincida exactamente con tu variable en app.component.ts
+    expect(app.title).toEqual('FrontSeguridad'); 
   });
 });

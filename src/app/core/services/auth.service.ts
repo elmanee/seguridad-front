@@ -20,20 +20,6 @@ export class AuthService {
     );
   }
 
-  isAdmin(): boolean {
-    const token = this.getAccessToken();
-    if (!token) return false;
-
-    try {
-      const payloadBase64 = token.split('.')[1];
-      const payload = JSON.parse(atob(payloadBase64));
-
-      return payload.username === 'admin'; 
-    } catch (e) {
-      return false;
-    }
-  }
-
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiPostUser}/user`, userData);
   }
