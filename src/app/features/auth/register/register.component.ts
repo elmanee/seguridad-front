@@ -7,11 +7,12 @@ import { AlertService } from '../../../core/services/alert.service';
 import { OnlyLettersDirective } from '../../../shared/directives/only-letters.directive';
 import { OnlyNumbersDirective } from '../../../shared/directives/only-numbers.directive';
 import { SecurePasswordDirective } from '../../../shared/directives/secure-password.directive';
+import { OnlyUsernameDirective } from '../../../shared/directives/only-username.directive';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, OnlyLettersDirective, OnlyNumbersDirective, SecurePasswordDirective],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, OnlyLettersDirective, OnlyNumbersDirective, SecurePasswordDirective, OnlyUsernameDirective],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {

@@ -43,7 +43,10 @@ export class TodoHomeComponent implements OnInit {
   ngOnInit() { this.loadTasks(); }
 
   loadTasks() {
-    this.taskService.getTasks().subscribe(data => this.tasks = data);
+    this.taskService.getTasks().subscribe({
+      next: (data) => this.tasks = data,
+      error: () => this.alertSvc.error('No se pudieron cargar las tareas. Intenta de nuevo.')
+    });
   }
 
   openEdit(task: Task) {
@@ -87,7 +90,7 @@ export class TodoHomeComponent implements OnInit {
         this.loadTasks();
         this.taskForm.reset();
       },
-      error: (err) => console.error("Error en la operación", err)
+      error: () => this.alertSvc.error('No se pudo guardar la tarea. Intenta de nuevo.')
     });
   }
 

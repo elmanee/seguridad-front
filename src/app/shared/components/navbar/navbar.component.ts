@@ -14,7 +14,7 @@ export class NavbarComponent {
   public authService = inject(AuthService);
   private router = inject(Router);
 
-  onLogout() {``
+  onLogout() {
     this.authService.logout().subscribe({
       next: () => {
         this.authService.clearTokens();

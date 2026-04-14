@@ -29,16 +29,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       // Si recibimos un 401, el access_token expiró (los 40s que pusiste)
       if (error instanceof HttpErrorResponse && error.status === 401) {
-        console.warn('⚠️ [Interceptor] Access Token expirado. Bloqueando petición original...');
-
         // 4. Intentamos el Refresh en silencio
         return authService.refreshToken().pipe(
           switchMap((res: any) => {
-            console.log('🚀 [Interceptor] ¡Refresh exitoso! Reintentando petición con nuevo token.');
-            // El backend nos devuelve { access_token, refresh_token }
-            // IMPORTANTE: Asegúrate de que tu authService.refreshToken()
-            // guarde estos nuevos tokens en el localStorage antes de retornar.
-
             // 5. Clonamos la petición original con el NUEVO Access Token
             const retryReq = req.clone({
               setHeaders: {
@@ -50,7 +43,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
             return next(retryReq);
           }),
           catchError((refreshErr) => {
-            console.error('❌ [Interceptor] El Refresh también falló. Sesión terminada.');
             // 7. Si el Refresh Token también falló (expiró o es inválido),
             // cerramos sesión y mandamos al usuario al Login.
             authService.logout();
