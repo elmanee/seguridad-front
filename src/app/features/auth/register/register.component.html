@@ -13,11 +13,21 @@
       <div class="row g-3 mb-4">
         <div class="col-md-6">
           <label class="form-label small fw-700 mb-2 ms-1 text-muted text-uppercase" style="letter-spacing: 0.5px;">Nombre</label>
-          <input type="text" formControlName="name" class="form-control" placeholder="Ej. Juan" appOnlyLetters>
+          <input type="text" formControlName="name" class="form-control"
+            [class.is-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+            placeholder="Ej. Juan" appOnlyLetters>
+          <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-danger small mt-1 ms-1">
+            El nombre es requerido.
+          </div>
         </div>
         <div class="col-md-6">
           <label class="form-label small fw-700 mb-2 ms-1 text-muted text-uppercase" style="letter-spacing: 0.5px;">Apellido</label>
-          <input type="text" formControlName="lastname" class="form-control" placeholder="Ej. Pérez" appOnlyLetters>
+          <input type="text" formControlName="lastname" class="form-control"
+            [class.is-invalid]="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched"
+            placeholder="Ej. Pérez" appOnlyLetters>
+          <div *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" class="text-danger small mt-1 ms-1">
+            El apellido es requerido.
+          </div>
         </div>
       </div>
 
@@ -30,9 +40,14 @@
           <input
             type="text"
             formControlName="username"
-            class="form-control" 
+            class="form-control"
+            [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
             appOnlyUsername
             placeholder="Ej: pepito">
+        </div>
+        <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-danger small mt-1 ms-1">
+          <span *ngIf="registerForm.get('username')?.errors?.['required']">El usuario es requerido.</span>
+          <span *ngIf="registerForm.get('username')?.errors?.['minlength']">Mínimo 4 caracteres.</span>
         </div>
       </div>
 
@@ -46,6 +61,7 @@
             [type]="hidePassword ? 'password' : 'text'"
             formControlName="password"
             class="form-control"
+            [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
             appSecurePassword
             placeholder="••••••••">
           <button
@@ -54,6 +70,10 @@
             (click)="togglePassword()">
             <i class="fa-solid fa-fw" [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye'" style="font-size: 0.85rem;"></i>
           </button>
+        </div>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger small mt-1 ms-1">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">La contraseña es requerida.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</span>
         </div>
       </div>
 
